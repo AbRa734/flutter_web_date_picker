@@ -36,6 +36,7 @@ Future<DateTimeRange?> showWebDatePicker({
   bool autoCloseOnDateSelect = false,
   bool showDisabledCursor = false,
   void Function()? onReset,
+  String? todayButtonText,
 }) {
   if (asDialog) {
     final renderBox = context.findRenderObject()! as RenderBox;
@@ -69,6 +70,7 @@ Future<DateTimeRange?> showWebDatePicker({
               showCancelButton: showCancelButton,
               showDisabledCursor: showDisabledCursor,
               onReset: onReset,
+              todayButtonText: todayButtonText,
             ),
           ),
         ),
@@ -99,6 +101,7 @@ Future<DateTimeRange?> showWebDatePicker({
         showCancelButton: showCancelButton,
         showDisabledCursor: showDisabledCursor,
         onReset: onReset,
+        todayButtonText: todayButtonText,
       ),
       asDropDown: true,
       useTargetWidth: width != null ? false : true,
@@ -130,6 +133,7 @@ class _WebDatePicker extends StatefulWidget {
     this.autoCloseOnDateSelect = false,
     this.showDisabledCursor = false,
     this.onReset,
+    this.todayButtonText,
   });
 
   final List<DateTime> blockedDates;
@@ -153,6 +157,7 @@ class _WebDatePicker extends StatefulWidget {
   final bool autoCloseOnDateSelect;
   final bool showDisabledCursor;
   final void Function()? onReset;
+  final String? todayButtonText;
 
   @override
   State<_WebDatePicker> createState() => _WebDatePickerState();
@@ -719,11 +724,23 @@ class _WebDatePickerState extends State<_WebDatePicker> {
 
                 /// Today
                 if (widget.showTodayButton)
-                  _iconWidget(
-                    Icons.today,
-                    tooltip: localizations.currentDateLabel,
-                    onTap: _onStartDateChanged,
-                  ),
+                  if (widget.todayButtonText != null)
+                    TextButton(
+                      onPressed: () => _onStartDateChanged(),
+                      child: Text(
+                        widget.todayButtonText!,
+                        style: TextStyle(
+                          color: widget.confirmButtonColor ?? theme.colorScheme.primary,
+                        ),
+                      ),
+                    )
+                  else
+                    _iconWidget(
+                      Icons.today,
+                      tooltip: localizations.currentDateLabel,
+                      onTap: _onStartDateChanged,
+                    ),
+
                 const Spacer(),
 
                 /// CANCEL
