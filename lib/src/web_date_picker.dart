@@ -761,11 +761,13 @@ class _WebDatePickerState extends State<_WebDatePicker> {
     String? tooltip,
     GestureTapCallback? onTap,
   }) {
+    final theme = Theme.of(context);
+    final iconColor = color ?? theme.colorScheme.onSurface;
     final child = Container(
       height: kActionHeight,
       width: kActionHeight,
       alignment: Alignment.center,
-      child: tooltip != null ? Tooltip(message: tooltip, child: Icon(icon, color: color)) : Icon(icon, color: color),
+      child: tooltip != null ? Tooltip(message: tooltip, child: Icon(icon, color: iconColor)) : Icon(icon, color: iconColor),
     );
     if (onTap != null) {
       return InkWell(
