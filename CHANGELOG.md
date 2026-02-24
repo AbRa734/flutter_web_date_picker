@@ -1,3 +1,9 @@
+# [0.1.9] (2/24/2026)
+
+- feat: add support for custom text in the 'Today' button ([AbRa734:main](https://github.com/AbRa734/flutter_web_date_picker/tree/main))
+- fix: Support for Dark Mode by removing hardcoded colors ([AbRa734:feature/colors](https://github.com/AbRa734/flutter_web_date_picker/tree/feature/colors))
+- fix: Invisible selected date ([AbRa734:fix/invisible-selected-day](https://github.com/AbRa734/flutter_web_date_picker/tree/fix/invisible-selected-day))
+
 # [0.1.8] (1/8/2026)
 
 Merge pull request #20 from AbRa734/main:
