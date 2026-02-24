@@ -199,7 +199,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
   }
 
   List<Widget> _buildDaysOfMonthCells(ThemeData theme) {
-    final textStyle = theme.textTheme.bodySmall?.copyWith(color: Colors.black);
+    final textStyle = theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface);
     final now = DateTime.now();
     final monthDateRange = _viewStartDate.monthDateTimeRange(
       includeTrailingAndLeadingDates: true,
@@ -353,7 +353,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
   }
 
   List<Widget> _buildMonthsOfYearCells(ThemeData theme) {
-    final textStyle = theme.textTheme.bodySmall?.copyWith(color: Colors.black);
+    final textStyle = theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface);
     final borderRadius = BorderRadius.circular(_childSize!.height / 4 - 32);
     final children = <Widget>[];
     final now = DateTime.now();
@@ -409,7 +409,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
   }
 
   List<Widget> _buildYearsCells(ThemeData theme) {
-    final textStyle = theme.textTheme.bodySmall?.copyWith(color: Colors.black);
+    final textStyle = theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface);
     final borderRadius = BorderRadius.circular(_childSize!.height / 5 - 16);
     final children = <Widget>[];
     final now = DateTime.now();
@@ -465,7 +465,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
   }
 
   List<Widget> _buildYearsOfCenturyCells(ThemeData theme) {
-    final textStyle = theme.textTheme.bodySmall?.copyWith(color: Colors.black);
+    final textStyle = theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface);
     final borderRadius = BorderRadius.circular(_childSize!.height / 5 - 16);
     final children = <Widget>[];
     final now = DateTime.now();
@@ -574,7 +574,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
           alignment: Alignment.center,
           child: Text(
             localizations.formatMonthYear(_viewStartDate).capitalize(),
-            style: theme.textTheme.bodyLarge?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+            style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
           ),
         );
         final monthDateRange = _viewStartDate.monthDateTimeRange(
@@ -591,7 +591,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
           alignment: Alignment.center,
           child: Text(
             localizations.formatYear(_viewStartDate),
-            style: theme.textTheme.bodyLarge?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+            style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
           ),
         );
         isFirst = _viewStartDate.year <= widget.firstDate.year;
@@ -607,7 +607,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
           alignment: Alignment.center,
           child: Text(
             "$year - ${year + 19}",
-            style: theme.textTheme.bodyLarge?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+            style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
           ),
         );
         nextView = widget.lastDate.year - widget.firstDate.year > 20;
@@ -621,7 +621,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
           alignment: Alignment.center,
           child: Text(
             "$year - ${year + 199}",
-            style: theme.textTheme.bodyLarge?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+            style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
           ),
         );
         nextView = false;
@@ -778,11 +778,13 @@ class _WebDatePickerState extends State<_WebDatePicker> {
     String? tooltip,
     GestureTapCallback? onTap,
   }) {
+    final theme = Theme.of(context);
+    final iconColor = color ?? theme.colorScheme.onSurface;
     final child = Container(
       height: kActionHeight,
       width: kActionHeight,
       alignment: Alignment.center,
-      child: tooltip != null ? Tooltip(message: tooltip, child: Icon(icon, color: color)) : Icon(icon, color: color),
+      child: tooltip != null ? Tooltip(message: tooltip, child: Icon(icon, color: iconColor)) : Icon(icon, color: iconColor),
     );
     if (onTap != null) {
       return InkWell(
