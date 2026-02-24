@@ -249,7 +249,7 @@ class _WebDatePickerState extends State<_WebDatePicker> {
           margin: EdgeInsets.all(2.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isEnabled && isSelected ? color : null,
+            color: isSelected ? color : null,
             border: isNow && !isSelected ? Border.all(color: color) : null,
           ),
           child: Text(date.day.toString(), style: cellTextStyle),
